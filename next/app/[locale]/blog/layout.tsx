@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { generateMetadataObject } from '@/lib/shared/metadata';
 
-import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
 import { CartProvider } from '@/context/cart-context';
 import { cn } from '@/lib/utils';
@@ -55,7 +54,6 @@ export default async function LocaleLayout({
                     >
                         <Navbar data={pageData.navbar} locale={locale} />
                         {children}
-                        <Footer data={pageData.footer} locale={locale} />
                     </body>
                 </CartProvider>
             </ViewTransitions>
