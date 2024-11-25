@@ -10,21 +10,11 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import { LocaleSwitcher } from "../locale-switcher";
 
 type Props = {
-  leftNavbarItems: {
-    URL: string;
-    text: string;
-    target?: string;
-  }[];
-  rightNavbarItems: {
-    URL: string;
-    text: string;
-    target?: string;
-  }[];
   logo: any;
   locale: string
 };
 
-export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale }: Props) => {
+export const MobileNavbar = ({ logo, locale }: Props) => {
   const [open, setOpen] = useState(false);
 
   const { scrollY } = useScroll();

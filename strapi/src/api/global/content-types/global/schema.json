@@ -36,17 +36,6 @@
         }
       },
       "component": "global.navbar"
-    },
-    "footer": {
-      "displayName": "Footer",
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "global.footer"
     }
   }
 }

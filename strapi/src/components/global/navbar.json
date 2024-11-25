@@ -10,18 +10,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::logo.logo"
-    },
-    "left_navbar_items": {
-      "displayName": "Left_Navbar_Items",
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.link"
-    },
-    "right_navbar_items": {
-      "displayName": "Right_Navbar_Items",
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.link"
     }
-  }
+ }
 }

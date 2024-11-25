@@ -5,11 +5,7 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx"],
   async redirects() {
-    let redirects = [{
-      source: `/:locale`,
-      destination: `/:locale/blog`,
-      permanent: false,
-    }];
+    let redirects = [];
 
     try {
       const res = await fetch(
