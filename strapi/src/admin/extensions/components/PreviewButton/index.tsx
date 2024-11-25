@@ -24,7 +24,7 @@ const PreviewButton = () => {
   const handlePreview = () => {
     const previewUrl = `${process.env.STRAPI_ADMIN_CLIENT_URL}/api/preview?secret=${process.env.STRAPI_ADMIN_CLIENT_PREVIEW_SECRET}&slug=${modifiedData.slug}&locale=${modifiedData.locale}&apiID=${layout.apiID}&kind=${layout.kind}`;
 
-    window.open(previewUrl, '_blank').focus();
+    window.open(previewUrl, '_blank')?.focus();
   };
 
   const content = {

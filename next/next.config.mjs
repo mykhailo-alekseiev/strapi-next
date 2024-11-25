@@ -5,7 +5,7 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx"],
   async redirects() {
-    let redirections = [];
+    let redirects = [];
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/redirections`
@@ -19,9 +19,9 @@ const nextConfig = {
         };
       });
 
-      redirections = redirections.concat(redirectItems);
+      redirects = redirects.concat(redirectItems);
 
-      return redirections;
+      return redirects;
     } catch (error) {
       return [];
     }
