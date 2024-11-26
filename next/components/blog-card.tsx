@@ -58,7 +58,7 @@ export const BlogCard = ({ article }: { article: Article}) => {
             className="rounded-full h-5 w-5"
           /> */}
           {/* <p className="text-sm font-normal text-muted">{article.author}</p> */}
-          <div className="h-1 w-1 bg-neutral-300 rounded-full"></div>
+          <div className="h-1 w-1 bg-neutral-300 rounded-full"/>
           <p className="text-neutral-300 text-sm  max-w-xl group-hover:text-white transition duration-200">
             {format(new Date(article.publishedAt), "MMMM dd, yyyy")}
           </p>
@@ -117,7 +117,7 @@ export const BlogCardVertical = ({ article }: { article: Article }) => {
             className="rounded-full h-5 w-5"
           />
           <p className="text-sm font-normal text-muted">{article.author}</p> */}
-          <div className="h-1 w-1 bg-neutral-300 rounded-full"></div>
+          <div className="h-1 w-1 bg-neutral-300 rounded-full"/>
           <p className="text-neutral-300 text-sm  max-w-xl group-hover:text-white transition duration-200">
             {format(new Date(article.publishedAt), "MMMM dd, yyyy")}
           </p>

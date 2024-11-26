@@ -25,7 +25,7 @@ export function spreadStrapiData(data: StrapiResponse): StrapiData | null {
   return null
 }
 
-export default async function fetchContentType(
+export default async function fetchContentType<T>(
   contentType: string,
   params?: string,
   spreadData?: boolean

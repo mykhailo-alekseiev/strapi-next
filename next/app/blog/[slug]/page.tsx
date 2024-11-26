@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 }
 
 
-export default async function singleArticlePage({ params }: { params: { slug: string} }) {
+export default async function SingleArticlePage({ params }: { params: { slug: string} }) {
   const article = await fetchContentType("articles", `filters[slug]=${params?.slug}`, true)
 
   if (!article) {

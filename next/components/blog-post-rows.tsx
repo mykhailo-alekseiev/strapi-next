@@ -4,18 +4,19 @@ import { format } from "date-fns";
 import { Link } from "next-view-transitions";
 import React from "react";
 import { Article } from "@/types/types";
+import { IconBook } from "@tabler/icons-react";
 
 export const BlogPostRows = ({ articles }: { articles: Article[] }) => {
   return (
-      <div className="divide-y divide-neutral-800">
-        {articles.length === 0 ? (
-          <p className="text-neutral-400 text-center p-4">No results found</p>
-        ) : (
-          articles.map((article, index) => (
-            <BlogPostRow article={article} key={article.slug + index} />
-          ))
-        )}
-      </div>
+    <div className="divide-y divide-neutral-800">
+      {articles.length === 0 ? (
+        <p className="text-neutral-400 text-center p-4">No results found</p>
+      ) : (
+        articles.map((article, index) => (
+          <BlogPostRow article={article} key={article.slug + index} />
+        ))
+      )}
+    </div>
   );
 };
 
@@ -38,7 +39,19 @@ export const BlogPostRow = ({ article }: { article: Article }) => {
           <p className="text-neutral-300 text-sm  max-w-xl group-hover:text-white transition duration-200">
             {format(new Date(article.publishedAt), "MMMM dd, yyyy")}
           </p>
-          <div className="h-1 w-1 rounded-full bg-neutral-800"></div>
+          <div className="h-1 w-1 rounded-full bg-neutral-800" />
+          {article.readTimeEstimate && (
+            <>
+              <div className="flex gap-1 items-center">
+                <IconBook className="size-3.5"/>
+                <p className="text-neutral-300 text-sm  max-w-xl group-hover:text-white transition duration-200">
+                  {article.readTimeEstimate}
+                </p>
+              </div>
+
+              <div className="h-1 w-1 rounded-full bg-neutral-800" />
+            </>
+          )}
           <div className="flex gap-4 flex-wrap ">
             {article.categories?.map((category, idx) => (
               <p

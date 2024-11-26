@@ -18,4 +18,5 @@ export interface Article {
   publishedAt: string;
   image: Image;
   categories: Category[]
+  readTimeEstimate: string
 }

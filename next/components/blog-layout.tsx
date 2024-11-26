@@ -1,4 +1,4 @@
-import { IconArrowLeft } from "@tabler/icons-react";
+import { IconArrowLeft, IconBook } from "@tabler/icons-react";
 import { Container } from "./container";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { strapiImage } from "@/lib/strapi/strapiImage";
 import DynamicZoneManager from "./dynamic-zone/manager";
 import { Article } from "@/types/types";
+import { Logo } from "@/components/logo";
 
 export async function BlogLayout({
   article,
@@ -14,11 +15,10 @@ export async function BlogLayout({
   article: Article;
   children: React.ReactNode;
 }) {
-
   return (
     <Container className="mt-16 lg:mt-32">
       <div className="flex justify-between items-center px-2 py-8">
-        <Link href='/blog' className="flex space-x-2 items-center">
+        <Link href="/blog" className="flex space-x-2 items-center">
           <IconArrowLeft className="w-4 h-4 text-muted" />
           <span className="text-sm text-muted">Back</span>
         </Link>
@@ -34,7 +34,7 @@ export async function BlogLayout({
           />
         ) : (
           <div className="h-40 md:h-96 w-full aspect-squace rounded-3xl shadow-derek bg-neutral-900 flex items-center justify-center">
-            {/* <Logo /> */}
+            <Logo />
           </div>
         )}
       </div>
@@ -51,27 +51,17 @@ export async function BlogLayout({
                 </p>
               ))}
             </div>
+            <p className="text-neutral-300 text-sm  max-w-xl group-hover:text-white transition duration-200 my-4">
+              Read time estimate: {article.readTimeEstimate}
+            </p>
             <header className="flex flex-col">
               <h1 className="mt-8 text-4xl font-bold tracking-tight text-neutral-200 sm:text-5xl ">
                 {article.title}
               </h1>
             </header>
-            <div className="mt-8 prose prose-sm prose-invert">
-              {children}
-            </div>
+            <div className="mt-8 prose prose-sm prose-invert">{children}</div>
             <div className="flex space-x-2 items-center pt-12 border-t border-neutral-800 mt-12">
-              <div className="flex space-x-2 items-center ">
-                {/* <Image
-                  src={article.authorAvatar}
-                  alt={article.author}
-                  width={20}
-                  height={20}
-                  className="rounded-full h-5 w-5"
-                />
-                <p className="text-sm font-normal text-muted">
-                  {article.author}
-                </p> */}
-              </div>
+              <div className="flex space-x-2 items-center " />
               <div className="h-5 rounded-lg w-0.5 bg-neutral-700" />
               <time
                 dateTime={article.publishedAt}
@@ -85,7 +75,9 @@ export async function BlogLayout({
           </article>
         </div>
       </div>
-      {article?.dynamic_zone && (<DynamicZoneManager dynamicZone={article?.dynamic_zone} />)}
+      {article?.dynamic_zone && (
+        <DynamicZoneManager dynamicZone={article?.dynamic_zone} />
+      )}
     </Container>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { IoIosMenu } from "react-icons/io";
-import { IoIosClose } from "react-icons/io";
 import { Logo } from "@/components/logo";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 
@@ -11,8 +9,6 @@ type Props = {
 };
 
 export const MobileNavbar = ({ logo }: Props) => {
-  const [open, setOpen] = useState(false);
-
   const { scrollY } = useScroll();
 
   const [showBackground, setShowBackground] = useState(false);
@@ -34,25 +30,6 @@ export const MobileNavbar = ({ logo }: Props) => {
       )}
     >
       <Logo image={logo?.image} />
-
-      <IoIosMenu
-        className="text-white h-6 w-6"
-        onClick={() => setOpen(!open)}
-      />
-
-      {open && (
-        <div className="fixed inset-0 bg-black z-50 flex flex-col items-start justify-start space-y-10  pt-5  text-xl text-zinc-600  transition duration-200 hover:text-zinc-800">
-          <div className="flex items-center justify-between w-full px-5">
-            <Logo image={logo?.image} />
-            <div className="flex items-center space-x-2">
-              <IoIosClose
-                className="h-8 w-8 text-white"
-                onClick={() => setOpen(!open)}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
