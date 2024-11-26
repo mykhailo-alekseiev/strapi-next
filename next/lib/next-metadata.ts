@@ -8,7 +8,6 @@ const seoData = {
     title: `LaunchPad - Your content delivery partner for large scale applications`,
     url: "https://ui.aceternity.com", // TODO: Fix this
     description: `A platform integrating Aceternity with Strapi for seamless content management.`,
-    locale: "en_EN",
     keywords: "content, delivery, web, hosting",
     images: [
       {

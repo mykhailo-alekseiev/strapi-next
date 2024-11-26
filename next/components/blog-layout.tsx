@@ -9,18 +9,16 @@ import { Article } from "@/types/types";
 
 export async function BlogLayout({
   article,
-  locale,
   children,
 }: {
   article: Article;
-  locale: string;
   children: React.ReactNode;
 }) {
 
   return (
     <Container className="mt-16 lg:mt-32">
       <div className="flex justify-between items-center px-2 py-8">
-        <Link href={`/${locale}/blog`} className="flex space-x-2 items-center">
+        <Link href='/blog' className="flex space-x-2 items-center">
           <IconArrowLeft className="w-4 h-4 text-muted" />
           <span className="text-sm text-muted">Back</span>
         </Link>
@@ -87,7 +85,7 @@ export async function BlogLayout({
           </article>
         </div>
       </div>
-      {article?.dynamic_zone && (<DynamicZoneManager dynamicZone={article?.dynamic_zone} locale={locale} />)}
+      {article?.dynamic_zone && (<DynamicZoneManager dynamicZone={article?.dynamic_zone} />)}
     </Container>
   );
 }

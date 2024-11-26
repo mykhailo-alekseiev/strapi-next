@@ -9,24 +9,24 @@ import { generateMetadataObject } from '@/lib/shared/metadata';
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string, slug: string };
+  params: { slug: string };
 }): Promise<Metadata> {
-  const pageData = await fetchContentType("articles", `filters[slug]=${params?.slug}&filters[locale][$eq]=${params.locale}&populate=seo.metaImage`, true)
+  const pageData = await fetchContentType("articles", `filters[slug]=${params?.slug}&populate=seo.metaImage`, true)
 
   const seo = pageData?.seo;
   const metadata = generateMetadataObject(seo);
   return metadata;
 }
 
-export default async function singleArticlePage({ params }: { params: { slug: string, locale: string } }) {
-  const article = await fetchContentType("articles", `filters[slug]=${params?.slug}&filters[locale][$eq]=${params.locale}`, true)
+export default async function singleArticlePage({ params }: { params: { slug: string} }) {
+  const article = await fetchContentType("articles", `filters[slug]=${params?.slug}`, true)
 
   if (!article) {
     return <div>Blog not found</div>;
   }
 
   return (
-    <BlogLayout article={article} locale={params.locale}>
+    <BlogLayout article={article}>
       <BlocksRenderer content={article.content} />
     </BlogLayout>
   );

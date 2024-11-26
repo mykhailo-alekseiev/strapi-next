@@ -8,15 +8,12 @@ import {
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Link } from "next-view-transitions";
-import { LocaleSwitcher } from "../locale-switcher";
 
 type Props = {
   logo: any;
-  locale: string;
 };
 
-export const DesktopNavbar = ({ logo, locale }: Props) => {
+export const DesktopNavbar = ({ logo }: Props) => {
   const { scrollY } = useScroll();
   const [showBackground, setShowBackground] = useState(false);
 
@@ -54,11 +51,9 @@ export const DesktopNavbar = ({ logo, locale }: Props) => {
         )}
       </AnimatePresence>
       <div className="flex flex-row gap-2 items-center">
-        <Logo locale={locale} image={logo?.image} />
+        <Logo image={logo?.image} />
       </div>
-      <div className="flex space-x-2 items-center">
-        <LocaleSwitcher />
-      </div>
+     
     </motion.div>
   );
 };

@@ -12,25 +12,17 @@ import { Article } from "@/types/types";
 import { generateMetadataObject } from '@/lib/shared/metadata';
 
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  const pageData = await fetchContentType('blog-page', `filters[locale]=${params.locale}&populate=seo.metaImage`, true)
+export async function generateMetadata(): Promise<Metadata> {
+  const pageData = await fetchContentType('blog-page', `populate=seo.metaImage`, true)
 
   const seo = pageData?.seo;
   const metadata = generateMetadataObject(seo);
   return metadata;
 }
 
-export default async function Blog({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  const blogPage = await fetchContentType('blog-page', `filters[locale]=${params.locale}`, true)
-  const articles = await fetchContentType('articles', `filters[locale]=${params.locale}`)
+export default async function Blog() {
+  const blogPage = await fetchContentType('blog-page', undefined, true)
+  const articles = await fetchContentType('articles')
 
   return (
     <div className="relative overflow-hidden py-20 md:py-0">
@@ -49,7 +41,7 @@ export default async function Blog({
         </div>
 
         {articles?.data.slice(0, 1).map((article: Article) => (
-          <BlogCard article={article} locale={params.locale} key={article.title} />
+          <BlogCard article={article} key={article.title} />
         ))}
 
         <BlogPostRows articles={articles?.data ?? []} />

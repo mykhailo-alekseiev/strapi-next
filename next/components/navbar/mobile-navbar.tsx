@@ -5,14 +5,12 @@ import { IoIosMenu } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
 import { Logo } from "@/components/logo";
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import { LocaleSwitcher } from "../locale-switcher";
 
 type Props = {
   logo: any;
-  locale: string
 };
 
-export const MobileNavbar = ({ logo, locale }: Props) => {
+export const MobileNavbar = ({ logo }: Props) => {
   const [open, setOpen] = useState(false);
 
   const { scrollY } = useScroll();
@@ -45,9 +43,8 @@ export const MobileNavbar = ({ logo, locale }: Props) => {
       {open && (
         <div className="fixed inset-0 bg-black z-50 flex flex-col items-start justify-start space-y-10  pt-5  text-xl text-zinc-600  transition duration-200 hover:text-zinc-800">
           <div className="flex items-center justify-between w-full px-5">
-            <Logo locale={locale} image={logo?.image} />
+            <Logo image={logo?.image} />
             <div className="flex items-center space-x-2">
-              <LocaleSwitcher />
               <IoIosClose
                 className="h-8 w-8 text-white"
                 onClick={() => setOpen(!open)}

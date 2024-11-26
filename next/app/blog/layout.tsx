@@ -19,11 +19,11 @@ const inter = Inter({
 export async function generateMetadata({
     params,
 }: {
-    params: { locale: string; slug: string };
+    params: { slug: string };
 }): Promise<Metadata> {
     const pageData = await fetchContentType(
         'global',
-        `&filters[locale][$eq]=${params.locale}&populate=seo.metaImage`,
+        `&populate=seo.metaImage`,
         true
     );
 
@@ -34,15 +34,13 @@ export async function generateMetadata({
 
 export default async function LocaleLayout({
     children,
-    params: { locale }
 }: {
     children: React.ReactNode;
-    params: { locale: string };
 }) {
 
-    const pageData = await fetchContentType('global', `filters[locale][$eq]=${locale}`, true);
+    const pageData = await fetchContentType('global', undefined, true);
     return (
-        <html lang={locale}>
+        <html>
             <ViewTransitions>
                     <body
                         className={cn(
@@ -50,7 +48,7 @@ export default async function LocaleLayout({
                             "bg-charcoal antialiased h-full w-full"
                         )}
                     >
-                        <Navbar data={pageData?.navbar} locale={locale} />
+                        <Navbar data={pageData?.navbar} />
                         {children}
                     </body>
             </ViewTransitions>

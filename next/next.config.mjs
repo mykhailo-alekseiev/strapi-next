@@ -5,11 +5,7 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx"],
   async redirects() {
-    let redirects = [{
-      source: `/:locale`,
-      destination: `/:locale/blog`,
-      permanent: false,
-    }];
+    let redirects = [];
 
     try {
       const res = await fetch(
@@ -18,8 +14,8 @@ const nextConfig = {
       const result = await res.json();
       const redirectItems = result.data.map(({ source, destination }) => {
         return {
-          source: `/:locale${source}`,
-          destination: `/:locale${destination}`,
+          source: source,
+          destination: destination,
           permanent: false,
         };
       });

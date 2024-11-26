@@ -16,20 +16,6 @@ export interface Article {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  locale: string;
   image: Image;
   categories: Category[]
 }
-
-export interface Product {
-  id: number;
-  name: string;
-  slug: string;
-  description: string;
-  price: number;
-  plans: any[];
-  perks: any[];
-  featured?: boolean;
-  images: any[];
-  categories?: any[];
-};
