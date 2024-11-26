@@ -1,10 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Link } from "next-view-transitions";
 import { useState } from "react";
 import { IoIosMenu } from "react-icons/io";
 import { IoIosClose } from "react-icons/io";
-import { Button } from "@/components/elements/button";
 import { Logo } from "@/components/logo";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { LocaleSwitcher } from "../locale-switcher";
@@ -55,46 +53,6 @@ export const MobileNavbar = ({ logo, locale }: Props) => {
                 onClick={() => setOpen(!open)}
               />
             </div>
-          </div>
-          <div className="flex flex-col items-start justify-start gap-[14px] px-8">
-            {leftNavbarItems.map((navItem: any, idx: number) => (
-              <>
-                {navItem.children && navItem.children.length > 0 ? (
-                  <>
-                    {navItem.children.map((childNavItem: any, idx: number) => (
-                      <Link
-                        key={`link=${idx}`}
-                        href={`/${locale}${childNavItem.URL}`}
-                        onClick={() => setOpen(false)}
-                        className="relative max-w-[15rem] text-left text-2xl"
-                      >
-                        <span className="block text-white">
-                          {childNavItem.text}
-                        </span>
-                      </Link>
-                    ))}
-                  </>
-                ) : (
-                  <Link
-                    key={`link=${idx}`}
-                    href={`/${locale}${navItem.URL}`}
-                    onClick={() => setOpen(false)}
-                    className="relative"
-                  >
-                    <span className="block text-[26px] text-white">
-                      {navItem.text}
-                    </span>
-                  </Link>
-                )}
-              </>
-            ))}
-          </div>
-          <div className="flex flex-row w-full items-start gap-2.5  px-8 py-4 ">
-            {rightNavbarItems.map((item, index) => (
-              <Button key={item.text} variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'} as={Link} href={`/${locale}${item.URL}`}>
-                {item.text}
-              </Button>
-            ))}
           </div>
         </div>
       )}
