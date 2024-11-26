@@ -96,7 +96,6 @@ export interface DynamicZoneFaq extends Struct.ComponentSchema {
     icon: 'question';
   };
   attributes: {
-    faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
     heading: Schema.Attribute.String;
     sub_heading: Schema.Attribute.String;
   };
@@ -192,7 +191,6 @@ export interface DynamicZonePricing extends Struct.ComponentSchema {
   };
   attributes: {
     heading: Schema.Attribute.String;
-    plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -219,7 +217,6 @@ export interface DynamicZoneRelatedProducts extends Struct.ComponentSchema {
   };
   attributes: {
     heading: Schema.Attribute.String;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -234,10 +231,6 @@ export interface DynamicZoneTestimonials extends Struct.ComponentSchema {
   attributes: {
     heading: Schema.Attribute.String;
     sub_heading: Schema.Attribute.String;
-    testimonials: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::testimonial.testimonial'
-    >;
   };
 }
 
