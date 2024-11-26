@@ -50,7 +50,7 @@ export default async function LocaleLayout({
                             "bg-charcoal antialiased h-full w-full"
                         )}
                     >
-                        <Navbar data={pageData.navbar} locale={locale} />
+                        <Navbar data={pageData?.navbar} locale={locale} />
                         {children}
                     </body>
             </ViewTransitions>
