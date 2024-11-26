@@ -2,27 +2,50 @@ import { type Metadata } from "next";
 import { Container } from "@/components/container";
 import { Heading } from "@/components/elements/heading";
 import { Subheading } from "@/components/elements/subheading";
-import { BlogCard } from "@/components/blog-card";
 import { FeatureIconContainer } from "@/components/dynamic-zone/features/feature-icon-container";
 import { IconClipboardText } from "@tabler/icons-react";
 import { BlogPostRows } from "@/components/blog-post-rows";
 import { AmbientColor } from "@/components/decorations/ambient-color";
 import fetchContentType from "@/lib/strapi/fetchContentType";
+import { generateMetadataObject } from "@/lib/shared/metadata";
+import { SearchArticlesInput } from "@/app/blog/[slug]/_components/search";
 import { Article } from "@/types/types";
-import { generateMetadataObject } from '@/lib/shared/metadata';
-
+import Pagination from "@/components/ui/pagination";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await fetchContentType('blog-page', `populate=seo.metaImage`, true)
+  const pageData = await fetchContentType(
+    "blog-page",
+    `populate=seo.metaImage`,
+    true
+  );
 
   const seo = pageData?.seo;
   const metadata = generateMetadataObject(seo);
   return metadata;
 }
 
-export default async function Blog() {
-  const blogPage = await fetchContentType('blog-page', undefined, true)
-  const articles = await fetchContentType('articles')
+export default async function Page(props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
+
+  const blogPage = await fetchContentType("blog-page", undefined, true);
+  const articles = (await fetchContentType(
+    "articles",
+    `pagination[page]=${currentPage}&pagination[pageSize]=5&filters[title][$containsi]=${query}`
+  )) as {
+    data: Article[];
+    meta: {
+      pagination: {
+        pageCount: number;
+      };
+    };
+  };
 
   return (
     <div className="relative overflow-hidden py-20 md:py-0">
@@ -40,11 +63,18 @@ export default async function Blog() {
           </Subheading>
         </div>
 
-        {articles?.data.slice(0, 1).map((article: Article) => (
-          <BlogCard article={article} key={article.title} />
-        ))}
-
-        <BlogPostRows articles={articles?.data ?? []} />
+        <div className="w-full py-20">
+          <div className="flex sm:flex-row flex-col justify-between gap-4 items-center mb-10">
+            <p className="text-2xl font-bold text-white">
+              Posts
+            </p>
+            <SearchArticlesInput />
+          </div>
+          <BlogPostRows articles={articles?.data ?? []} />
+          <div className="py-4 flex justify-end">
+            <Pagination totalPages={articles.meta.pagination.pageCount} />
+          </div>
+        </div>
       </Container>
     </div>
   );

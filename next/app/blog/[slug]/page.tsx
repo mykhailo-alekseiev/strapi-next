@@ -18,6 +18,19 @@ export async function generateMetadata({
   return metadata;
 }
 
+export const revalidate = 60
+ 
+export const dynamicParams = true 
+ 
+export async function generateStaticParams() {
+  const articles = await fetchContentType('articles')
+
+  return articles.data.map((article: any) => ({
+    slug: String(article.slug),
+  }))
+}
+
+
 export default async function singleArticlePage({ params }: { params: { slug: string} }) {
   const article = await fetchContentType("articles", `filters[slug]=${params?.slug}`, true)
 
