@@ -5,7 +5,6 @@ import { Inter } from 'next/font/google';
 import { generateMetadataObject } from '@/lib/shared/metadata';
 
 import { Navbar } from '@/components/navbar';
-import { CartProvider } from '@/context/cart-context';
 import { cn } from '@/lib/utils';
 import { ViewTransitions } from 'next-view-transitions';
 import fetchContentType from '@/lib/strapi/fetchContentType';
@@ -45,7 +44,6 @@ export default async function LocaleLayout({
     return (
         <html lang={locale}>
             <ViewTransitions>
-                <CartProvider>
                     <body
                         className={cn(
                             inter.className,
@@ -55,7 +53,6 @@ export default async function LocaleLayout({
                         <Navbar data={pageData.navbar} locale={locale} />
                         {children}
                     </body>
-                </CartProvider>
             </ViewTransitions>
         </html>
     );
